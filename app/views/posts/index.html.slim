@@ -1,0 +1,44 @@
+<h1>Posts#index</h1>
+
+div
+
+  | Please click on a view to see the comments:
+  br
+  br
+
+  table.table-bordered.table-hover
+    thead
+      tr
+        th
+          | S.No
+        th
+          | Post
+        th
+          | Posted On
+        th
+          | Author
+        th
+          | Total Comments
+        th
+          | View Link
+    tbody
+      - @posts.each.with_index do |s, i|
+        tr
+          td
+            = i+1
+          td
+            = s.body
+          td
+            = s.created_at.strftime("%m/%d/%Y") if s.created_at
+          td
+            = s.user.name
+          td
+            = s.comments.count
+          td
+            = link_to "Comments", post_comments_path(s.id)
+
+br
+br
+
+| Click here to create new post: 
+= link_to "New Post", new_post_path

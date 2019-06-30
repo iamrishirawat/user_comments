@@ -1,0 +1,18 @@
+<h1>Posts#new</h1>
+
+| New post for user:
+
+= form_for @post do |f|
+
+  table
+    tr
+      .form-group
+        tr
+          td
+            = f.label :body, "Body: "
+          td
+            = f.text_area :body, :maxlength => 500, required: true
+    
+  .actions
+    .add_post_submit
+      = f.submit :class => "btn btn-primary pull-right", :id => "add_post_submit"

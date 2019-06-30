@@ -1,0 +1,31 @@
+<h1>Comments#index</h1>
+
+= "#{@post.user.name} says: "
+br
+div.post
+  = @post.body
+div.date.text-info
+  = "Posted on : #{@post.created_at.strftime("%m/%d/%Y %I:%M:%S %p")}"
+br
+br
+
+div.comments
+  - if @comments.any?
+
+    | Comments:
+    br
+    br
+    - @comments.each do |c|
+      = c.body
+      br
+      div.date.text-info
+        = " commented on: #{c.created_at.strftime("%m/%d/%Y %I:%M:%S %p")} by #{c.user.name}"
+      br
+  - else
+    | No comments.
+
+br
+br
+| Add new comment:
+br
+= render :template => "/comments/new"
